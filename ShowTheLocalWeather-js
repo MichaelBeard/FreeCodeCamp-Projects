@@ -1,0 +1,60 @@
+$(document).ready(function(){
+  var name = document.getElementById("cityname");
+  var loc;
+  var weather = document.getElementById("weather");
+  var temperature = document.getElementById("temperature");
+  var hightemp = document.getElementById("hightemp");
+  var lowtemp = document.getElementById("lowtemp");
+  var weathericon = document.getElementById("weathericon");
+  var tempSwap = false;
+  function processData(wd){
+        var celcius = ((Math.floor(wd.main.temp - 32))) * 5/9;
+        var celmin = ((Math.floor(wd.main.temp_min - 32))) * 5/9;
+        var celmax = ((Math.floor(wd.main.temp_max - 32))) * 5/9;
+        var iconCode = wd.weather[0].icon;
+        name.innerHTML = wd.name;
+              
+        weather.innerHTML = wd.weather[0].description;
+        temperature.innerHTML = (Math.floor(wd.main.temp)) + " &#8457";
+        hightemp.innerHTML = (Math.floor(wd.main.temp_max)) + " &#8457";
+        lowtemp.innerHTML = (Math.floor(wd.main.temp_min)) + " &#8457";
+        weathericon.innerHTML = ("<img src= 'http://openweathermap.org/img/w/"+ iconCode+".png' height = 100 width = 100>");
+
+        if (wd.main.temp < 80 && wd.main.temp > 60){
+          $("body").css("background-image","url('http://fox41blogs.typepad.com/.a/6a0148c78b79ee970c017d3c61d9ec970c-pi')");
+        }else if(wd.main.temp > 80){
+          $("body").css("background-image", "url('http://portugalresident.com/sites/default/files/styles/node-detail/public/field/image/beach-wallpaper-hd-1240x775.jpg?itok=5Ia1b2nk')");
+          
+        }else{
+          $("body").css("background-image", "url('https://i.ytimg.com/vi/TWpXz7D-oPU/maxresdefault.jpg')");
+        }
+    $("#toggle").click(function(){
+      if (tempSwap === false){
+        temperature.innerHTML = Math.floor(celcius) + " &#8451";
+        lowtemp.innerHTML = Math.floor(celmin) + " &#8451";
+        hightemp.innerHTML = Math.floor(celmax) + " &#8451";
+        tempSwap = true;
+      }else{
+        temperature.innerHTML = (Math.floor(wd.main.temp)) + " &#8457";
+        hightemp.innerHTML = (Math.floor(wd.main.temp_max)) + " &#8457";
+        lowtemp.innerHTML = (Math.floor(wd.main.temp_min)) + " &#8457";
+        tempSwap = false;
+      }
+    });
+  }
+  $(function(){
+    $.getJSON('https://ipinfo.io', function(d){
+      loc = d.loc.split(",");
+      console.log(loc);
+      $.getJSON('https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?units=imperial&lat='+ loc[0] + '&lon=' + loc[1] +'&APPID=93d95be4935332f85f3cd82993d91e3b', function(wd){
+        console.log(wd);
+        processData(wd);
+        
+        
+        
+      });
+        
+});
+  });
+    
+});
