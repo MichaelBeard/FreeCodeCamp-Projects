@@ -1,0 +1,26 @@
+
+  <h1 id = "cityname"></h1>
+  
+  <h1 class = "text-center" style = "padding:20px;">Show the Local Weather</h1>
+<p class = "text-center">There is/are <strong><span id = "weather"></span></strong></p>
+  <div id = "weathericon"></div>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-sm-4">
+      <h1>Temperature</h1>
+      <p id = "temperature"></p>
+      <button><a rel="nofollow" rel="noreferrer"href = "#" id = "toggle">To Celcius</a></button>
+    </div>
+    
+    <div class = "col-sm-4">
+      <h1>Max Temp.</h1>
+      <p id ="hightemp"></p>
+    </div>
+    <div class = "col-sm-4">
+      <h1>Min Temp.</h1>
+      <p id = "lowtemp"></p>
+    </div>
+    
+    
+  </div>
+</div>
