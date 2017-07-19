@@ -1,0 +1,15 @@
+<h1>Wikipedia Viewer</h1>
+  <h4>Search or <a rel="nofollow" rel="noreferrer"href = "https://en.wikipedia.org/wiki/Special:Random">Click</a> for a random article</h4>
+  <br>
+  <br>
+  <div id = "container">
+    <form>
+  <input id = "searchTerm" type = "text" name = "searchbox" placeholder = "Find an article..">
+         </form>
+    <button id = "search" type = "submit" class = "btn btn-primary">Submit</button>
+    <ul id = "output">
+    
+    </ul>
+    
+  </div>
+</div>
